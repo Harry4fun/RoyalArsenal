@@ -4,14 +4,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    category: ['toutiao','auto','dy','ent','money','sports','tech','war'],
+    newsList:{}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    let _this = this
+    wx.request({
+      url: 'https://www.apiopen.top/journalismApi',
+      success(res) {
+        console.log(res)
+        let data = res.data || {};
+        _this.setData({            
+            newsList: data.data
+          })
+        console.log('newsList', _this.data.newsList)
+      },
+      fail(res) {
+        wx.showToast({
+          title: res.errMsg || '网络不给力，请稍后再试',
+          icon: 'none',
+        })
+      },
+      complete: () => {
+      }
+    })
   },
 
   /**
