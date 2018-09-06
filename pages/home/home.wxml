@@ -1,5 +1,8 @@
 <view class='container'>
   
   <scroll-view>
+    <view wx:for='{{category}}' wx:key='{{index}}' class='news_banner_text'>
+      <text>{{item}}</text>
+    </view>
   </scroll-view>
 </view>
